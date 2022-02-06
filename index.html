@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrics.now | Bienvenidos</title>
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <script defer src="https://unpkg.com/vue@next"></script>
+    <script src="./js/main.js" defer></script>
+</head>
+<body>
+    
+    <div class="contenedor-principal">
+
+        <header>
+            <img src="./assets/img/vector-logo.svg" alt="Logo de Lyrics.now">
+            <h1>Lyrics<span>.now</span></h1>
+        </header>
+    
+        <main class="main">
+
+            <section class="home">
+
+                <div class="home-contenido">
+                    <h2>Canta tu música favorita, estés donde estés!</h2>
+                    <p>Encuentra la letra de todas tus canciones favoritas en un solo lugar.</p>
+                    <a href="#aplicacion"><button type="button">Empieza ahora</button></a>
+                </div>
+                <img src="./assets/img/img-main.svg" alt="Ilustracion de persona cantando" class="home-imagen">
+
+            </section>
+
+            <section id="aplicacion" class="aplicacion">
+                <form  v-on:submit.prevent="buscarCancion" class="aplicacion-formulario" >
+                    <input v-model.trim="busqueda" type="text"  placeholder="Escribe aquí la canción o artista que estás buscando">
+                </form>
+
+                <!-- <pre>{{ $data }}</pre> -->
+
+                <section class="aplicacion-respuesta">
+                    <ul class="canciones" v-if="buscando">
+                        <li v-for="cancion in canciones"  class="cancion">
+                            <img v-bind:src="cancion.album.cover" v-bind:alt="'cancion.title" class="caratula">
+                            <div class="datos-cancion">
+                                <span>{{ cancion.title }}</span>
+                                <span> {{ cancion.artist.name }}</span>
+                                <button @click="obtenerCancion( cancion.artist.name, cancion.title )" >Ver letra</button>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <section class="letra" v-else>
+
+                        <span class="titulo">{{ cancion.titulo }}</span>
+                        <span class="artista">by {{ cancion.artista }}</span>
+                        <p v-html="cancion.letra" class="letra-respuesta"></p>
+
+                    </section>
+                </section>
+                
+            </section>
+
+        </main>
+    
+        <footer class="footer">
+            <span>Hecho con amor en Vue 💚 por Jose Navarro</span>
+        </footer>
+
+    </div>
+
+</body>
+</html>
