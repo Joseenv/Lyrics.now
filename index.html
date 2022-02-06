@@ -45,7 +45,7 @@
                 <section class="aplicacion-respuesta">
                     <ul class="canciones" v-if="buscando">
                         <li v-for="cancion in canciones"  class="cancion">
-                            <img v-bind:src="cancion.album.cover" v-bind:alt="'cancion.title" class="caratula">
+                            <img v-bind:src="cancion.album.cover" v-bind:alt="cancion.title" class="caratula">
                             <div class="datos-cancion">
                                 <span>{{ cancion.title }}</span>
                                 <span> {{ cancion.artist.name }}</span>
